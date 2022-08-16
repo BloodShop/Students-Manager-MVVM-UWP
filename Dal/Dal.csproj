@@ -126,6 +126,7 @@
     <Compile Include="Comparers\CompareLastName.cs" />
     <Compile Include="Comparers\CompareName.cs" />
     <Compile Include="DataMock.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="StudentContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Dal.rd.xml" />

@@ -10,14 +10,13 @@ namespace Dal
     public class DataMock
     {
         static Dictionary<int, Student> _students;
+        static DataMock _instance;
+        static readonly object _lock = new object();
 
-        private static readonly object _lock = new object();
         public static List<IComparer<Student>> SortStudent { get; private set; }
+        public static int UniqueSeed { get; private set; } = 1000;
         public Dictionary<int, Student> Students { get => _students; }
 
-
-        public static int UniqueSeed = 100;
-        static DataMock _instance;
         public static DataMock Instance
         {
             get

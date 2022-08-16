@@ -51,7 +51,7 @@ namespace Model
             {
                 if (IsValidPhone(value))
                     _homePhoneNum = value;
-                else _homePhoneNum = "09999999";
+                else _homePhoneNum = "0999999999";
             }
         }
 

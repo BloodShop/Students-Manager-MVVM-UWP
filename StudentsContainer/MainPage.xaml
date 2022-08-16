@@ -8,7 +8,6 @@
     mc:Ignorable="d"
     xmlns:x1="using:Model"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     <Page.DataContext>
         <local:MainViewModel/>
     </Page.DataContext>
@@ -36,7 +35,6 @@
                    FontSize="50" FontFamily="Algerian" Text="Search" TextWrapping="WrapWholeWords"/>
             <TextBox x:Name="SearchEmailTB" Text="{Binding SearchEmail, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
                  MinWidth="150" PlaceholderText="Enter Email"/>
-
             <Button x:Name="SearchBtn" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
                  MinWidth="150" Content="Search" Command="{Binding SearchCommand}" IsEnabled="{Binding IsSearchSpecificValid, Mode=TwoWay}"/>
             <Button x:Name="ClearBtn" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -57,13 +55,9 @@
                  MinWidth="150" PlaceholderText="Enter Email"/>
             <TextBox x:Name="EditGradeTB" Text="{Binding EditGrade, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
                  MinWidth="150" PlaceholderText="Enter Grade"/>
-
             <Button x:Name="EditBtn" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
                  MinWidth="150" Content="Edit Student" Command="{Binding EditCommand}" IsEnabled="{Binding IsEditValid, Mode=TwoWay}"/>
-            
         </StackPanel>
-
-        
 
         <StackPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="3">
             <TextBlock Grid.Row="0" Grid.Column="1"
@@ -113,12 +107,11 @@
                                 <TextBlock Margin="5,0,0,0" Text="{Binding PersonalPhoneNum}" FontFamily="Bahnschrift" FontStyle="Italic"/>
                                 <TextBlock Margin="15,0,0,0" Text="Home:" FontFamily="Bahnschrift"/>
                                 <TextBlock Margin="5,0,0,0" Text="{Binding HomePhoneNum}" FontFamily="Bahnschrift" FontStyle="Italic"/>
-                                     </StackPanel>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
     </Grid>
 </Page>

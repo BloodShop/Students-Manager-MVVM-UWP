@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Dal
 {
-    public class StudentContainer : IEnumerable
+    public class StudentContainer : IEnumerable, IRepository<Student>
     {
         readonly DataMock _data = DataMock.Instance;
         int uniqueSeed = DataMock.UniqueSeed;
@@ -37,9 +37,10 @@ namespace Dal
                 return phoneNum;
             }
         }
+
         public List<Student> Sort(IComparer<Student> comparison)
         {
-            List<Student> temp = GetStudents().ToList();
+            List<Student> temp = GetAll().ToList();
             temp.Sort(comparison);
             return temp;
         }
@@ -65,8 +66,7 @@ namespace Dal
             }
             return @new;
         }
-        public IQueryable<Student> GetStudents() => _data.Students.Values.AsQueryable();
-
+        public IQueryable<Student> GetAll() => _data.Students.Values.AsQueryable();
 
         public IEnumerator GetEnumerator()
         {

@@ -2,9 +2,6 @@
 using Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
@@ -71,17 +68,7 @@ namespace StudentsContainer
             }
         }
 
-        #region Props
-        bool _isSearchValid;
-        public bool IsSearchValid
-        {
-            get => _isSearchValid;
-            private set
-            {
-                _isSearchValid = value;
-                RaisePropertyChanged(nameof(IsSearchValid));
-            }
-        }
+        #region Props MVVM
         bool _isRemoveValid;
         public bool IsRemoveValid
         {
@@ -92,8 +79,17 @@ namespace StudentsContainer
                 RaisePropertyChanged(nameof(IsRemoveValid));
             }
         }
-
         #region SearchEngine Properties
+        bool _isSearchValid;
+        public bool IsSearchValid
+        {
+            get => _isSearchValid;
+            private set
+            {
+                _isSearchValid = value;
+                RaisePropertyChanged(nameof(IsSearchValid));
+            }
+        }
         bool _isSearchSpecificValid;
         public bool IsSearchSpecificValid
         {
@@ -289,7 +285,7 @@ namespace StudentsContainer
         #endregion
         #endregion
 
-        public MainViewModel() => ResultStudents = _studentContainer.GetStudents();
+        public MainViewModel() => ResultStudents = _studentContainer.GetAll();
         
         public ICommand SortCommand => new DelegateCommand(SortStudents);
         public ICommand RemoveCommand => new DelegateCommand(RemoveStudent);
@@ -301,7 +297,7 @@ namespace StudentsContainer
         private void EditStudent()
         {
             SelectedStudent.Update(_editEmail, _editPhone, _editGrade);
-            ResultStudents = _studentContainer.GetStudents();
+            ResultStudents = _studentContainer.GetAll();
         }
         async void SearchStudent()
         {
@@ -314,16 +310,14 @@ namespace StudentsContainer
         void AddStudent()
         {
             _studentContainer.Add(new Student(FirstName, LastName, Email, FinalGrade, PersonalPhoneNum, HomePhoneNum));
-            ResultStudents = _studentContainer.GetStudents();
+            ResultStudents = _studentContainer.GetAll();
         }
         void RemoveStudent()
         {
             _studentContainer.Remove(SelectedStudent);
-            ResultStudents = _studentContainer.GetStudents();
+            ResultStudents = _studentContainer.GetAll();
         }
         void SortStudents() => ResultStudents = _studentContainer.Sort(SelectedComparer);
-
-
         bool IsValidEmail(string email)
         {
             try
