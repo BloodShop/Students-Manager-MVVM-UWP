@@ -1,6 +1,6 @@
 # StudentsContainer
->Simple application used to manage a list of candidates for studies, The manager class is able to Add, Remove, Get, Update students.
-This class Inhertice from IEnumrable and IRepository<T>.
+Simple application used to manage a list of candidates for studies, The manager class is able to Add, Remove, Get, Update students.
+This class Inhertice from `IEnumrable` and `IRepository<T>`.
   
 ## MVVM Project devided to three parts
 1. Model (Student / Person, Configuration, StudentsManager...)
@@ -31,5 +31,5 @@ public class MainViewModelBase : INotifyPropertyChanged, INotifyCollectionChange
 ```
   
  ## Sorting Comparers
- > A sorting comparer allows the manager to select any kind of sort and display the results. Sorting comparers are delegates which the manager selects and passes it to the Students Manager class.
+ > A sorting comparer allows the manager to select any kind of sort and display the results. Sorting comparers are delegates which the manager selects and passes it to the `StudentsContainer` class.
   https://github.com/BloodShop/StudentsContainer/blob/9ca4a21b3c5ff05dbfa45f0444a668f2a192d66a/Dal/Comparers/CompareGradesHigh.cs#L6-L10
