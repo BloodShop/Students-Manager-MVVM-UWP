@@ -1,0 +1,56 @@
+﻿{
+	"0": {
+		"FinalGrade": 99,
+		"LastName": "Kolyakov",
+		"FirstName": "Alon",
+		"Email": "koliakovcr7@gmail.com",
+		"PersonalPhoneNum": "0503901000",
+		"HomePhoneNum": "0773439491",
+		"Id": 1
+	},
+	"1": {
+		"FinalGrade": 55,
+		"LastName": "Rebolo",
+		"FirstName": "Dani",
+		"Email": "Dani123@gmail.com",
+		"PersonalPhoneNum": "0503901001",
+		"HomePhoneNum": "0899720032",
+		"Id": 2
+	},
+	"2": {
+		"FinalGrade": 88,
+		"LastName": "Loyef",
+		"FirstName": "Ronen",
+		"Email": "Singleton@gmail.com",
+		"PersonalPhoneNum": "0503901002",
+		"HomePhoneNum": "0688324554",
+		"Id": 3
+	},
+	"3": {
+		"FinalGrade": 86,
+		"LastName": "Box",
+		"FirstName": "Duplicate",
+		"Email": "Roplixxx@gmail.com",
+		"PersonalPhoneNum": "0503901777",
+		"HomePhoneNum": "0456948943",
+		"Id": 4
+	},
+	"4": {
+		"FinalGrade": 80,
+		"LastName": "Kobi",
+		"FirstName": "Tamir",
+		"Email": "SSOS@gmail.com",
+		"PersonalPhoneNum": "0504678654",
+		"HomePhoneNum": "0711292032",
+		"Id": 5
+	},
+	"5": {
+		"FinalGrade": 77,
+		"LastName": "Snap",
+		"FirstName": "Roblex",
+		"Email": "PuSHKIN@gmail.com",
+		"PersonalPhoneNum": "0523546789",
+		"HomePhoneNum": "0439029921",
+		"Id": 6
+	}
+}

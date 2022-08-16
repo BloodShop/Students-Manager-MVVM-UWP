@@ -1,0 +1,122 @@
+﻿<Page
+    x:Class="StudentsContainer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StudentsContainer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:x1="using:Model"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <local:MainViewModel/>
+    </Page.DataContext>
+    <Page.Resources>
+        <local:StringFormatter x:Key="StringFormatterValueConverter"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="3">
+            <TextBlock Grid.Row="0" Grid.Column="1"
+                   HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
+                   FontSize="50" FontFamily="Algerian" Text="Search" TextWrapping="WrapWholeWords"/>
+            <TextBox x:Name="SearchEmailTB" Text="{Binding SearchEmail, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="Enter Email"/>
+
+            <Button x:Name="SearchBtn" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                 MinWidth="150" Content="Search" Command="{Binding SearchCommand}" IsEnabled="{Binding IsSearchSpecificValid, Mode=TwoWay}"/>
+            <Button x:Name="ClearBtn" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                 MinWidth="150" Content="Clear" Click="ClearBtn_Click"/>
+            <TextBlock x:Name="SpecificStudentPhone"  Grid.Row="1" Grid.Column="0" FontFamily="Book Antiqua" Visibility="Visible"
+                  FontSize="50" Text="{Binding ResultSpecificStudent, Mode=TwoWay}" Foreground="White" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.RowSpan="3">
+            <TextBlock Grid.Row="0" Grid.Column="1"
+                   HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
+                   FontSize="50" FontFamily="Algerian" Text="Edit" TextWrapping="WrapWholeWords"/>
+            <TextBox x:Name="EditPhoneTB" Text="{Binding EditPhone, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="Enter Phone"/>
+            <TextBox x:Name="EditEmailTB" Text="{Binding EditEmail, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="Enter Email"/>
+            <TextBox x:Name="EditGradeTB" Text="{Binding EditGrade, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="Enter Grade"/>
+
+            <Button x:Name="EditBtn" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                 MinWidth="150" Content="Edit Student" Command="{Binding EditCommand}" IsEnabled="{Binding IsEditValid, Mode=TwoWay}"/>
+            
+        </StackPanel>
+
+        
+
+        <StackPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="3">
+            <TextBlock Grid.Row="0" Grid.Column="1"
+                   HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
+                   FontSize="50" FontFamily="Algerian" Text="Add" TextWrapping="WrapWholeWords"/>
+            <TextBox x:Name="FirstNameTB" Text="{Binding FirstName, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="FirstName"/>
+            <TextBox x:Name="LastNameTB" Text="{Binding LastName, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="LastName"/>
+            <TextBox x:Name="EmailTB" Text="{Binding Email, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="Email"/>
+            <TextBox x:Name="FinalGradeTB" Text="{Binding FinalGrade, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="Final Grade"/>
+            <TextBox x:Name="PersonalPhoneNumTB" Text="{Binding PersonalPhoneNum, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="Phone Number"/>
+            <TextBox x:Name="HomePhoneNumTB" Text="{Binding HomePhoneNum, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="Home Number"/>
+            <Button x:Name="AddBtn" Command="{Binding AddCommand}" IsEnabled="{Binding IsAddValid, Mode=TwoWay}" 
+                    Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150" Content="Add"/>
+        </StackPanel>
+
+        <ComboBox x:Name="SearchComaparer" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" MinWidth="250"
+                  SelectedItem="{Binding SelectedComparer, Mode=TwoWay}" ItemsSource="{Binding SortStudent}"
+                   FontSize="20" FontFamily="Book Antiqua" Text="select Sort" Background="#66DA0C0C"
+                   PlaceholderText="Pick Sorting Option" HorizontalAlignment="Center" Height="37" Width="250"/>
+
+        <Button x:Name="SeachBtn" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Command="{Binding SortCommand}" IsEnabled="{Binding IsSearchValid, Mode=TwoWay}" 
+                    Margin="0,15,0,0" HorizontalAlignment="Center" MinWidth="150" Content="Sort"/>
+        <Button x:Name="RemovehBtn" Grid.Row="4" Grid.Column="3" VerticalAlignment="Top" Command="{Binding RemoveCommand}" IsEnabled="{Binding IsRemoveValid, Mode=TwoWay}" 
+                    Margin="0,15,0,0" HorizontalAlignment="Center" MinWidth="150" Content="REMOVE STUDENT"/>
+        <Button x:Name="SaveBtn" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Command="{Binding SaveCommand}" 
+                    Margin="0,15,0,0" HorizontalAlignment="Center" MinWidth="150" Content="SAVE"/>
+        <ListView x:Name="ResultLV" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" FontFamily="Book Antiqua" BorderThickness="3" BorderBrush="#FF431161" Background="#66DA0C0C" Visibility="Visible"
+                   Margin="15" ItemsSource="{Binding ResultStudents}" SelectedItem="{Binding SelectedStudent, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x1:Student">
+                    <StackPanel Orientation="Horizontal" Margin="6">
+                        <SymbolIcon Symbol="Contact2" Margin="0,0,12,0"/>
+                        <TextBlock FontSize="40" Margin="0,0,12,0" Text="{Binding FinalGrade}" FontWeight="Bold" FontFamily="Book Antiqua"/>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding LastName}" FontSize="20" FontWeight="Bold" FontFamily="Bahnschrift"/>
+                            <TextBlock Text="{Binding FirstName}" FontSize="17" FontWeight="Bold" FontFamily="Bahnschrift"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Email:" FontFamily="Bahnschrift"/>
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Email}" FontFamily="Bahnschrift" FontStyle="Italic"/>
+                                <TextBlock Margin="15,0,0,0" Text="Phone:" FontFamily="Bahnschrift"/>
+                                <TextBlock Margin="5,0,0,0" Text="{Binding PersonalPhoneNum}" FontFamily="Bahnschrift" FontStyle="Italic"/>
+                                <TextBlock Margin="15,0,0,0" Text="Home:" FontFamily="Bahnschrift"/>
+                                <TextBlock Margin="5,0,0,0" Text="{Binding HomePhoneNum}" FontFamily="Bahnschrift" FontStyle="Italic"/>
+                                     </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>
