@@ -41,6 +41,8 @@
                  MinWidth="150" Content="Search" Command="{Binding SearchCommand}" IsEnabled="{Binding IsSearchSpecificValid, Mode=TwoWay}"/>
             <Button x:Name="ClearBtn" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
                  MinWidth="150" Content="Clear" Click="ClearBtn_Click"/>
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center" Margin="0,20,0,0"
+                   FontSize="20" FontFamily="Algerian" Text="Phone Number:" TextWrapping="WrapWholeWords"/>
             <TextBlock x:Name="SpecificStudentPhone"  Grid.Row="1" Grid.Column="0" FontFamily="Book Antiqua" Visibility="Visible"
                   FontSize="50" Text="{Binding ResultSpecificStudent, Mode=TwoWay}" Foreground="White" HorizontalAlignment="Center"/>
         </StackPanel>
@@ -83,18 +85,18 @@
                     Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150" Content="Add"/>
         </StackPanel>
 
-        <ComboBox x:Name="SearchComaparer" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" MinWidth="250"
+        <ComboBox x:Name="SearchComaparer" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" MinWidth="250"
                   SelectedItem="{Binding SelectedComparer, Mode=TwoWay}" ItemsSource="{Binding SortStudent}"
-                   FontSize="20" FontFamily="Book Antiqua" Text="select Sort" Background="#66DA0C0C"
+                   FontSize="20" FontFamily="Book Antiqua" Text="select Sort" Background="#66DA0C0C" Margin="20"
                    PlaceholderText="Pick Sorting Option" HorizontalAlignment="Center" Height="37" Width="250"/>
 
-        <Button x:Name="SeachBtn" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Command="{Binding SortCommand}" IsEnabled="{Binding IsSearchValid, Mode=TwoWay}" 
+        <Button x:Name="SeachBtn" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Command="{Binding SortCommand}" IsEnabled="{Binding IsSearchValid, Mode=TwoWay}" 
                     Margin="0,15,0,0" HorizontalAlignment="Center" MinWidth="150" Content="Sort"/>
         <Button x:Name="RemovehBtn" Grid.Row="4" Grid.Column="3" VerticalAlignment="Top" Command="{Binding RemoveCommand}" IsEnabled="{Binding IsRemoveValid, Mode=TwoWay}" 
                     Margin="0,15,0,0" HorizontalAlignment="Center" MinWidth="150" Content="REMOVE STUDENT"/>
         <Button x:Name="SaveBtn" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Command="{Binding SaveCommand}" 
                     Margin="0,15,0,0" HorizontalAlignment="Center" MinWidth="150" Content="SAVE"/>
-        <ListView x:Name="ResultLV" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" FontFamily="Book Antiqua" BorderThickness="3" BorderBrush="#FF431161" Background="#66DA0C0C" Visibility="Visible"
+        <ListView x:Name="ResultLV" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" FontFamily="Book Antiqua" BorderThickness="3" BorderBrush="#FF431161" Background="#66DA0C0C" Visibility="Visible"
                    Margin="15" ItemsSource="{Binding ResultStudents}" SelectedItem="{Binding SelectedStudent, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="x1:Student">

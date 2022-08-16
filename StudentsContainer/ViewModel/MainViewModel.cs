@@ -278,14 +278,14 @@ namespace StudentsContainer
             get => _editGrade;
             set
             {
-                if(value> 0 && value <= 100) _editGrade = value;
+                if(value >= 0 && value <= 100) _editGrade = value;
                 if (EditStudentCondition()) IsEditValid = true;
                 else IsEditValid = false;
                 RaisePropertyChanged(nameof(EditGrade));
             }
 
         }
-        bool EditStudentCondition() => _editEmail != null && _editPhone != null && (_editGrade > 0 && _editGrade <= 100);
+        bool EditStudentCondition() => _editEmail != null && _editPhone != null && (_editGrade >= 0 && _editGrade <= 100);
         #endregion
         #endregion
 

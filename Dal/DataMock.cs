@@ -9,10 +9,10 @@ namespace Dal
 {
     public class DataMock
     {
+        static Dictionary<int, Student> _students;
+
         private static readonly object _lock = new object();
         public static List<IComparer<Student>> SortStudent { get; private set; }
-
-        static Dictionary<int, Student> _students;
         public Dictionary<int, Student> Students { get => _students; }
 
 
@@ -43,7 +43,7 @@ namespace Dal
            };
 
         DataMock() => init();
-        void init()
+        void init() // An initialization without Configuration file
         {
             if (_students != null) return;
 
@@ -56,7 +56,6 @@ namespace Dal
             foreach (var std in temp)
                 _students.Add(UniqueSeed++, std);
         }
-        
 
         // My pc doesn't have access to write any text in files you probably would have
         public static void SaveDataBaseJson()
