@@ -47,9 +47,9 @@ namespace Dal
             if (_students != null) return;
 
             List<Student> temp = new List<Student>();
-            temp.Add(new Student("Alon", "Kolyakov", "koliakovcr7@gmail.com", 99, "0503901000", "0777777777"));
-            temp.Add(new Student("Dani", "Rebolo", "Dani123@gmail.com", 87, "0503901001", "0777777777"));
-            temp.Add(new Student("Ronen", "Loyef", "Singleton@gmail.com", 76, "0503901002", "0777777777"));
+            temp.Add(new Student("Alon", "Kolyakov", "koliakovcr7@gmail.com", 99, "0503901000", "0777777777", 123456789));
+            temp.Add(new Student("Dani", "Rebolo", "Dani123@gmail.com", 87, "0503901001", "0777777777", 989456482));
+            temp.Add(new Student("Ronen", "Loyef", "Singleton@gmail.com", 76, "0503901002", "0777777777", 546301293));
 
             _students = new Dictionary<int, Student>();
             foreach (var std in temp)

@@ -29,7 +29,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="3">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center">
             <TextBlock Grid.Row="0" Grid.Column="1"
                    HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
                    FontSize="50" FontFamily="Algerian" Text="Search" TextWrapping="WrapWholeWords"/>
@@ -45,24 +45,28 @@
                   FontSize="50" Text="{Binding ResultSpecificStudent, Mode=TwoWay}" Foreground="White" HorizontalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="0" Grid.RowSpan="3">
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.RowSpan="3">
             <TextBlock Grid.Row="0" Grid.Column="1"
                    HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
-                   FontSize="50" FontFamily="Algerian" Text="Edit" TextWrapping="WrapWholeWords"/>
+                   FontSize="40" FontFamily="Algerian" Text="Edit Details" TextWrapping="WrapWholeWords"/>
+            <TextBox x:Name="ID_TB" Text="{Binding UnEditID, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" Foreground="White" PlaceholderText="ID" IsEnabled="False" Header="ID"/>
             <TextBox x:Name="EditPhoneTB" Text="{Binding EditPhone, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-                 MinWidth="150" PlaceholderText="Enter Phone"/>
+                 MinWidth="150" PlaceholderText="Enter Phone" Header="Phone Number"/>
             <TextBox x:Name="EditEmailTB" Text="{Binding EditEmail, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-                 MinWidth="150" PlaceholderText="Enter Email"/>
+                 MinWidth="150" PlaceholderText="Enter Email" Header="Email"/>
             <TextBox x:Name="EditGradeTB" Text="{Binding EditGrade, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-                 MinWidth="150" PlaceholderText="Enter Grade"/>
+                 MinWidth="150" PlaceholderText="Enter Grade" Header="Final Grade"/>
             <Button x:Name="EditBtn" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                 MinWidth="150" Content="Edit Student" Command="{Binding EditCommand}" IsEnabled="{Binding IsEditValid, Mode=TwoWay}"/>
+                 MinWidth="150" Content="Submit Edition" FontFamily="Algerian" Command="{Binding EditCommand}" IsEnabled="{Binding IsEditValid, Mode=TwoWay}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="3">
             <TextBlock Grid.Row="0" Grid.Column="1"
                    HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
                    FontSize="50" FontFamily="Algerian" Text="Add" TextWrapping="WrapWholeWords"/>
+            <TextBox x:Name="IdTB" Text="{Binding ID, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                 MinWidth="150" PlaceholderText="ID"/>
             <TextBox x:Name="FirstNameTB" Text="{Binding FirstName, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
                  MinWidth="150" PlaceholderText="FirstName"/>
             <TextBox x:Name="LastNameTB" Text="{Binding LastName, Mode=TwoWay}" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"

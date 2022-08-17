@@ -55,8 +55,8 @@ namespace Model
             }
         }
 
-        public Student(string firstName, string lastName, string email, int finalGrade, string personalPhoneNum, string homePhoneNum)
-            : base(firstName, lastName)
+        public Student(string firstName, string lastName, string email, int finalGrade, string personalPhoneNum, string homePhoneNum, int id)
+            : base(firstName, lastName, id)
         {
             Email = email;
             FinalGrade = finalGrade;

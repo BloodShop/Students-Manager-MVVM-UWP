@@ -13,29 +13,11 @@ namespace StudentsContainer
         StudentContainer _studentContainer = new StudentContainer();
         IEnumerable<Student> _resultStudents = new List<Student>();
         IComparer<Student> _selectedComparer;
-        string _resultSpecificStudent;
         Student _selectedStudent;
+        string _resultSpecificStudent;
 
         public StudentContainer StudentContainer => _studentContainer;
         public List<IComparer<Student>> SortStudent => DataMock.SortStudent;
-        public IEnumerable<Student> ResultStudents
-        {
-            get => _resultStudents;
-            private set
-            {
-                _resultStudents = value;
-                RaisePropertyChanged(nameof(ResultStudents));
-            }
-        }
-        public string ResultSpecificStudent
-        {
-            get => _resultSpecificStudent;
-            private set
-            {
-                _resultSpecificStudent = value;
-                RaisePropertyChanged(nameof(ResultSpecificStudent));
-            }
-        }
         public IComparer<Student> SelectedComparer
         {
             get => _selectedComparer;
@@ -43,6 +25,15 @@ namespace StudentsContainer
             {
                 _selectedComparer = value;
                 IsSearchValid = true;
+            }
+        }
+        public IEnumerable<Student> ResultStudents
+        {
+            get => _resultStudents;
+            private set
+            {
+                _resultStudents = value;
+                RaisePropertyChanged(nameof(ResultStudents));
             }
         }
         public Student SelectedStudent
@@ -53,6 +44,7 @@ namespace StudentsContainer
                 _selectedStudent = value;
                 if(_selectedStudent != null)
                 {
+                    UnEditID = _selectedStudent.Id;
                     EditEmail = _selectedStudent.Email;
                     EditGrade = _selectedStudent.FinalGrade;
                     EditPhone = _selectedStudent.PersonalPhoneNum;
@@ -60,11 +52,21 @@ namespace StudentsContainer
                 }
                 else
                 {
+                    UnEditID = 0;
                     EditEmail = string.Empty;
                     EditGrade = 0;
                     EditPhone = string.Empty;
                     IsRemoveValid = false;
                 }
+            }
+        }
+        public string ResultSpecificStudent
+        {
+            get => _resultSpecificStudent;
+            private set
+            {
+                _resultSpecificStudent = value;
+                RaisePropertyChanged(nameof(ResultSpecificStudent));
             }
         }
 
@@ -122,6 +124,31 @@ namespace StudentsContainer
         string _homePhoneNum;
         string _firstName;
         string _lastName;
+        int _id;
+        int _unEditId;
+
+        public int UnEditID
+        {
+            get => _unEditId;
+            private set
+            {
+                _unEditId = value;
+                RaisePropertyChanged(nameof(UnEditID));
+            }
+        }
+        public int ID
+        {
+            get => _id;
+            set
+            {
+                if (IsValidID(value))
+                    _id = value;
+                else return;
+               
+                if (AddCondition()) IsAddValid = true;
+                RaisePropertyChanged(nameof(ID));
+            }
+        }
         public string FirstName
         {
             get => _firstName;
@@ -212,7 +239,7 @@ namespace StudentsContainer
             }
         }
         bool AddCondition() => _firstName != null && _lastName != null && _email != null &&
-            _finalGrade != default && _personalPhoneNum != null && _homePhoneNum != null;
+            _finalGrade != default && _personalPhoneNum != null && _homePhoneNum != null && _id != default;
         #endregion
         #region Edit Student Props
         bool _isEditValid;
@@ -281,7 +308,7 @@ namespace StudentsContainer
             }
 
         }
-        bool EditStudentCondition() => _editEmail != null && _editPhone != null && (_editGrade >= 0 && _editGrade <= 100);
+        bool EditStudentCondition() => _editEmail != null && _editPhone != null && _editGrade >= 0 && _editGrade <= 100;
         #endregion
         #endregion
 
@@ -309,7 +336,7 @@ namespace StudentsContainer
         }
         void AddStudent()
         {
-            _studentContainer.Add(new Student(FirstName, LastName, Email, FinalGrade, PersonalPhoneNum, HomePhoneNum));
+            _studentContainer.Add(new Student(FirstName, LastName, Email, FinalGrade, PersonalPhoneNum, HomePhoneNum, ID));
             ResultStudents = _studentContainer.GetAll();
         }
         void RemoveStudent()
@@ -332,12 +359,9 @@ namespace StudentsContainer
             }
             catch (Exception) { return false; }
         }
-        bool IsValidPhone(string phone)
-        {
-            if ((phone != string.Empty) && (phone.Substring(0, 2) == "05" || phone.Substring(0, 1) == "0") && phone.Length == 10)
-                return true;
-            return false;
-        }
+        bool IsValidPhone(string phone) => phone != string.Empty && phone.Length == 10 && phone.Substring(0, 1) == "0";
+        bool IsValidID(int id) => id.ToString().Length == 9;
+
         async Task Message(string message, string title) => await new MessageDialog(message, title).ShowAsync();
         void SaveStudents() => DataMock.SaveDataBaseJson();
     }
