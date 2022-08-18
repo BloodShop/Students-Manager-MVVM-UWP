@@ -9,24 +9,22 @@ namespace Dal
 {
     public class DataMock
     {
-        static Dictionary<int, Student> _students;
+        static Dictionary<uint, Student> _students;
         static DataMock _instance;
         static readonly object _lock = new object();
 
         public static List<IComparer<Student>> SortStudent { get; private set; }
-        public static int UniqueSeed { get; private set; } = 1000;
-        public Dictionary<int, Student> Students { get => _students; }
+        public static uint UniqueSeed { get; private set; } = 1000;
+        public Dictionary<uint, Student> Students { get => _students; }
 
         public static DataMock Instance
         {
             get
             {
                 lock (_lock)
-                {
                     if (_instance == null)
                         //_instance = new DataMock();
                         InitDataBaseJson();
-                }
                 return _instance;
             }
         }
@@ -51,7 +49,7 @@ namespace Dal
             temp.Add(new Student("Dani", "Rebolo", "Dani123@gmail.com", 87, "0503901001", "0777777777", 989456482));
             temp.Add(new Student("Ronen", "Loyef", "Singleton@gmail.com", 76, "0503901002", "0777777777", 546301293));
 
-            _students = new Dictionary<int, Student>();
+            _students = new Dictionary<uint, Student>();
             foreach (var std in temp)
                 _students.Add(UniqueSeed++, std);
         }
@@ -73,7 +71,7 @@ namespace Dal
             {
                 string configPath = Path.Combine(Environment.CurrentDirectory, "TextFiles\\DataBase.json");
                 string raw = File.ReadAllText(configPath);
-                if (raw != null) _students = JsonConvert.DeserializeObject<Dictionary<int, Student>>(raw);
+                if (raw != null) _students = JsonConvert.DeserializeObject<Dictionary<uint, Student>>(raw);
 
             }
             catch (Exception) { }

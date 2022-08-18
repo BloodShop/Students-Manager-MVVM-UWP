@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Student : Person, IFormattable
+    public class Student : Person
     {
         string _email;
         int _finalGrade;
@@ -30,8 +26,7 @@ namespace Model
             {
                 if (value >= 0 && value <= 100)
                     _finalGrade = value;
-                else
-                    _finalGrade = 0;
+                else _finalGrade = 0;
             }
         }
         public string PersonalPhoneNum
@@ -41,7 +36,7 @@ namespace Model
             {
                 if (IsValidPhone(value))
                     _personalPhoneNum = value;
-                else _personalPhoneNum = "05050505050";
+                else _personalPhoneNum = "0000000000";
             }
         }
         public string HomePhoneNum
@@ -51,11 +46,11 @@ namespace Model
             {
                 if (IsValidPhone(value))
                     _homePhoneNum = value;
-                else _homePhoneNum = "0999999999";
+                else _homePhoneNum = "0000000000";
             }
         }
 
-        public Student(string firstName, string lastName, string email, int finalGrade, string personalPhoneNum, string homePhoneNum, int id)
+        public Student(string firstName, string lastName, string email, int finalGrade, string personalPhoneNum, string homePhoneNum, uint id)
             : base(firstName, lastName, id)
         {
             Email = email;
@@ -70,16 +65,7 @@ namespace Model
             _personalPhoneNum = phoneNum;
             _finalGrade = grade;
         }
-        public override string ToString() =>
-            $"{FirstName} {LastName} {_email} {_finalGrade} {_personalPhoneNum} {_homePhoneNum}";
-        public string ToString(string format, IFormatProvider formatProvider)
-        {
-            switch (format)
-            {
-                case "s": return LastName;
-                default: return ToString();
-            }
-        }
+        public override string ToString() => $"{FirstName} {LastName} {_email} {_finalGrade} {_personalPhoneNum} {_homePhoneNum}";
         bool IsValidEmail(string email)
         {
             try

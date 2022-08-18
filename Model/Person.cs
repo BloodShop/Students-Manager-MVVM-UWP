@@ -1,27 +1,33 @@
-﻿namespace Model
+﻿using System;
+
+namespace Model
 {
     public class Person
     {
-        static int seed = 1;
+        public static BSTree<uint, Person> BstPeople { get; private set; } = new BSTree<uint, Person>();
 
-        readonly int _id;
+        uint _id;
         string _firstName;
         string _lastName;
 
-        public int Id => _id;
+        public uint Id
+        {
+            get => _id;
+            private set
+            {
+                if (BstPeople.FindValue(value, out Person p))
+                    throw new Exception("ID already exists in out system");
+                _id = value;
+                BstPeople.Add(Id, this);
+            }
+        }
         public string FirstName => _firstName;
         public string LastName => _lastName;
-        public Person(string firstName, string lastName)
+        public Person(string firstName, string lastName, uint id)
         {
             _firstName = firstName;
             _lastName = lastName;
-            _id = seed++;
-        }
-        public Person(string firstName, string lastName, int id)
-        {
-            _firstName = firstName;
-            _lastName = lastName;
-            _id = id;
+            Id = id;
         }
     }
 }

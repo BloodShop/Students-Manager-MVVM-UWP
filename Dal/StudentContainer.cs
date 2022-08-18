@@ -9,9 +9,9 @@ namespace Dal
     public class StudentContainer : IEnumerable, IRepository<Student>
     {
         readonly DataMock _data = DataMock.Instance;
-        int uniqueSeed = DataMock.UniqueSeed;
+        uint uniqueSeed = DataMock.UniqueSeed;
 
-        public Student this[int id]
+        public Student this[uint id]
         {
             get
             {
@@ -30,10 +30,7 @@ namespace Dal
                 {
                     phoneNum = _data.Students.FirstOrDefault(x => x.Value.Email == email).Value.PersonalPhoneNum;
                 }
-                catch (Exception)
-                { 
-                    throw new Exception($"Email: {email} doesnt exist in our lists..."); 
-                }
+                catch (Exception) { throw new Exception($"Email: {email} doesnt exist in our lists..."); }
                 return phoneNum;
             }
         }
@@ -67,7 +64,6 @@ namespace Dal
             return @new;
         }
         public IQueryable<Student> GetAll() => _data.Students.Values.AsQueryable();
-
         public IEnumerator GetEnumerator()
         {
             // instead of writing CustomerEnum

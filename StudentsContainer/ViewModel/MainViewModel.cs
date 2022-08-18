@@ -124,10 +124,10 @@ namespace StudentsContainer
         string _homePhoneNum;
         string _firstName;
         string _lastName;
-        int _id;
-        int _unEditId;
+        uint _id;
+        uint _unEditId;
 
-        public int UnEditID
+        public uint UnEditID
         {
             get => _unEditId;
             private set
@@ -136,14 +136,14 @@ namespace StudentsContainer
                 RaisePropertyChanged(nameof(UnEditID));
             }
         }
-        public int ID
+        public uint ID
         {
             get => _id;
             set
             {
                 if (IsValidID(value))
                     _id = value;
-                else return;
+                //else return;
                
                 if (AddCondition()) IsAddValid = true;
                 RaisePropertyChanged(nameof(ID));
@@ -308,7 +308,7 @@ namespace StudentsContainer
             }
 
         }
-        bool EditStudentCondition() => _editEmail != null && _editPhone != null && _editGrade >= 0 && _editGrade <= 100;
+        bool EditStudentCondition() => _selectedStudent != null && _editEmail != null && _editPhone != null && _editGrade >= 0 && _editGrade <= 100;
         #endregion
         #endregion
 
@@ -334,10 +334,15 @@ namespace StudentsContainer
             }
             catch (Exception ex) { await Message(ex.Message, "No Email"); }
         }
-        void AddStudent()
+        async void AddStudent()
         {
-            _studentContainer.Add(new Student(FirstName, LastName, Email, FinalGrade, PersonalPhoneNum, HomePhoneNum, ID));
-            ResultStudents = _studentContainer.GetAll();
+            try
+            {
+                _studentContainer.Add(new Student(FirstName, LastName, Email, FinalGrade, PersonalPhoneNum, HomePhoneNum, ID));
+                ResultStudents = _studentContainer.GetAll();
+                IsAddValid = false;
+            }
+            catch (Exception ex) { await Message(ex.Message, "Person With this unique id already exists"); }
         }
         void RemoveStudent()
         {
@@ -360,7 +365,7 @@ namespace StudentsContainer
             catch (Exception) { return false; }
         }
         bool IsValidPhone(string phone) => phone != string.Empty && phone.Length == 10 && phone.Substring(0, 1) == "0";
-        bool IsValidID(int id) => id.ToString().Length == 9;
+        bool IsValidID(uint id) => id.ToString().Length == 9/* && !Person.BstPeople.FindValue(id, out Person p)*/;
 
         async Task Message(string message, string title) => await new MessageDialog(message, title).ShowAsync();
         void SaveStudents() => DataMock.SaveDataBaseJson();
