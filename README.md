@@ -5,7 +5,7 @@ This class Inhertice from `IEnumrable` and `IRepository<T>`.
 ## MVVM Project devided to three parts
 1. Model (Student / Person, Configuration, StudentsManager...)
   > Sudents manager class which organizes all the students and is able to Update, Get, Add, Remove any student and a sorting function which sort the whole Students to the UI.
-  https://github.com/BloodShop/StudentsContainer/blob/9ca4a21b3c5ff05dbfa45f0444a668f2a192d66a/Dal/StudentContainer.cs#L41-L76
+https://github.com/BloodShop/Students-Manager-MVVM-UWP/blob/9ca4a21b3c5ff05dbfa45f0444a668f2a192d66a/Dal/StudentContainer.cs#L41-L76
 2. View (XAML)
 <p align="center"> Running application - Manger page contains Search, Add, Sort and etc.. </p>
 <p align="center">
@@ -31,5 +31,5 @@ public class MainViewModelBase : INotifyPropertyChanged, INotifyCollectionChange
 ```
   
  ## Sorting Comparers
- > A sorting comparer allows the manager to select any kind of sort and display the results. Sorting comparers are delegates which the manager selects and passes it to the `StudentsContainer` class.
-  https://github.com/BloodShop/StudentsContainer/blob/9ca4a21b3c5ff05dbfa45f0444a668f2a192d66a/Dal/Comparers/CompareGradesHigh.cs#L6-L10
+  > A sorting comparer allows the manager to select any kind of sort and display the results. Sorting comparers are delegates which the manager selects and passes it to the `StudentsContainer` class.
+https://github.com/BloodShop/Students-Manager-MVVM-UWP/blob/9ca4a21b3c5ff05dbfa45f0444a668f2a192d66a/Dal/Comparers/CompareGradesHigh.cs#L6-L10
